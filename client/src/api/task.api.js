@@ -11,3 +11,11 @@ export const createTaskRequest = async (task) => await axios.post(apiURL, task);
 
 export const deleteTaskRequest = async (id) =>
   await axios.delete(`${apiURL}/${id}`);
+
+export const updateTaskRequest = async (id, newTask) => {
+  await axios.patch(`${apiURL}/${id}`, newTask);
+};
+
+export const toggleTaskRequest = async (id, done) => {
+  await axios.patch(`${apiURL}/${id}`, { done });
+};

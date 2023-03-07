@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import { useTasks } from "../context/TaskContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const TaskForm = () => {
-  const { createTask, getTask } = useTasks();
+  const { createTask, getTask, updateTask } = useTasks();
   const [task, setTask] = useState({ title: "", description: "" });
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getTaskByID = async () => {
@@ -29,13 +30,18 @@ export const TaskForm = () => {
         initialValues={task}
         enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          createTask(values);
-          actions.resetForm();
+          if (params.id) {
+            await updateTask(params.id, values);
+          } else {
+            await createTask(values);
+          }
+          navigate("/");
+          setTask({ title: "", description: "" });
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>title</label>
+          <Form onSubmit={handleSubmit} className=" max-w-sm">
+            <label className="block">title</label>
             <input
               type="text"
               name="title"
@@ -43,14 +49,18 @@ export const TaskForm = () => {
               onChange={handleChange}
               value={values.title}
             />
-            <label>description</label>
+            <label className="block">description</label>
             <textarea
               name="description"
               placeholder="Write a description"
               onChange={handleChange}
               value={values.description}
             ></textarea>
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              className="block bg-slate-400 rounded-sm p-2"
+              type="submit"
+              disabled={isSubmitting}
+            >
               Save
             </button>
           </Form>

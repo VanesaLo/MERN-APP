@@ -7,15 +7,19 @@ import { TaskProvider } from "./context/TaskContext";
 
 const App = () => {
   return (
-    <TaskProvider>
+    <div className="bg-sky-200 h-screen ">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<TasksPages />} />
-        <Route path="/create-task" element={<TaskForm />} />
-        <Route path="/edit/:id" element={<TaskForm />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </TaskProvider>
+      <div className="container px-4 py-4">
+        <TaskProvider>
+          <Routes>
+            <Route path="/" element={<TasksPages />} />
+            <Route path="/create-task" element={<TaskForm />} />
+            <Route path="/edit/:id" element={<TaskForm />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </TaskProvider>
+      </div>
+    </div>
   );
 };
 
