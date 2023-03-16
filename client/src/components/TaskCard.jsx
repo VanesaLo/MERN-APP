@@ -11,34 +11,36 @@ export const TaskCard = ({ task }) => {
   };
 
   return (
-    <div className="bg-red-200 rounded-md p-4">
+    <div className="cards rounded-md p-6">
       <header className="flex justify-between">
-        <h2 className="tsxt-sm font-bold">{task.title}</h2>
-        <span>{!task.done ? "	❌" : "✅"}</span>
+        <h2 className="titleTask tsxt-sm font-bold rounded-md p-2">
+          {task.title}
+        </h2>
+        <span className="doneItem">{!task.done ? "	❌" : "✅"}</span>
       </header>
-      <p>{task.description}</p>
-      <span>{task.createdAt}</span>
+      <p className="descrptionTask">{task.description}</p>
 
       <div className=" flex gap-2">
         <button
-          className="bg-slate-400 rounded-sm p-2"
+          className="btn rounded-md p-2"
           onClick={() => navigate(`/edit/${task.id}`)}
         >
           Edit
         </button>
         <button
-          className="bg-slate-400 rounded-sm p-2"
+          className="btn rounded-md p-2"
           onClick={() => deleteTask(task.id)}
         >
           Delete
         </button>
         <button
-          className="bg-slate-400 rounded-sm p-2"
+          className="btn rounded-md p-2"
           onClick={() => handleDone(task.done)}
         >
           Toggle
         </button>
       </div>
+      {/* <span>Create: {task.createdAt}</span> */}
     </div>
   );
 };

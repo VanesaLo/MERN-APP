@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { getTaskRequest } from "../api/task.api";
 import { TaskCard } from "../components/TaskCard";
 import { useTasks } from "../context/TaskContext";
 
@@ -12,7 +11,7 @@ export const TasksPages = () => {
 
   return (
     <div>
-      <header className="font-bold text-center text-2xl">List Tasks</header>
+      <header className="font-bold text-center text-2xl m-6">List Tasks</header>
       <div className="grid grid-cols-3 gap-4">
         {tasks.length === 0 ? (
           <h1>Not tasks yet</h1>

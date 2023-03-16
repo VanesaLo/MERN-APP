@@ -4,12 +4,13 @@ import NotFound from "./pages/NotFound";
 import { Navbar } from "./components/Navbar";
 import { TasksPages } from "./pages/TasksPages";
 import { TaskProvider } from "./context/TaskContext";
+import "./components/styles.css";
 
 const App = () => {
   return (
-    <div className="bg-sky-200 h-screen ">
+    <div className="containerApp h-screen">
       <Navbar />
-      <div className="container px-4 py-4">
+      <div className="flex justify-center px-4 py-4">
         <TaskProvider>
           <Routes>
             <Route path="/" element={<TasksPages />} />
